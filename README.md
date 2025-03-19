@@ -1,7 +1,30 @@
 Overview
 ========
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+I was asked to build a data pipeline to fetch data from an API and store it in a data lake.
+
+Project Instructions
+====================
+
+We could choose an orchestration tool and a language.
+We were asked to build a pipeline that created a data lake following the medallion architecture.
+
+Main Decisions
+==============
+
+I chose to build an `Airflow` workflow using `Astronomer Cosmos` because it nicely integrates with `dbt`. Using `dbt` I can build models, a data lineage, and keep every transformation and stage as code, which can be versioned.
+
+`Astronomer Cosmos` "zoom in" in each `airflow` task and we also gain control by visualizing its logs on the Airflow UI itself.
+
+Regarding the data itself, the main decision took place in the silver layer. We should partition the data based on the brewery location, I chose to partition it based on the `state` column. That is because, after analyzing the data stats, `city` was too granular, while `country` was an overkill. `state` provided a somewhat skewed distribution, which could cause problems when the data grow. But for now it was the better decision. See the pictures below to gain an understanding.
+
+![Columns from the json](./columns.png)
+
+![`state` distribution](./state_distribution.png)
+
+
+
+
 
 Project Contents
 ================
