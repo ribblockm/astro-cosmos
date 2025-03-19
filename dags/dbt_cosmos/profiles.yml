@@ -1,0 +1,10 @@
+dbt_cosmos:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "/usr/local/airflow/include/duckdb.db"
+      extensions:
+        - delta
+      settings:
+        delta_path: "include" # Root directory for Delta Lake tables

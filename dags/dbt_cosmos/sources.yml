@@ -1,0 +1,6 @@
+sources:
+  - name: local_delta
+    tables:
+      - name: raw_delta
+        external_location: "/usr/local/airflow/include/raw_delta_table"
+        description: "Raw Breweries Delta Table"
