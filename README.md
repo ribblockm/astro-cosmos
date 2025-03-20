@@ -23,6 +23,12 @@ Regarding the data itself, the main decision took place in the silver layer. We 
 ![`state` distribution](./state_distribution.png)
 
 
+Strategy
+========
+
+The data fetched from the API was saved as `json` in raw format. That data was then ingested in `DuckDB`, using its reader to dynamically infer the schema of the data. In `DuckDB` I created a temporary table and saved it as a `Delta Table`. This `Delta Table` was used, at this point (before the bronze layer) to avoid ingestion or reading json files with `dbt`. After that, I proceeded with the instructions gave.
+
+I should note that I dropped the `address_1` and `address_3` (to be revised later with clients or managers) because the first was equal to another field, the `street` field, and the latter was all `null`.
 
 
 
